@@ -1,13 +1,13 @@
 {
-  "name": "angular2-webpack",
+  "name": "lspa",
   "version": "1.0.0",
-  "description": "A webpack starter for Angular",
+  "description": "A Angular SPA frontend for the Limitless Garden API",
   "scripts": {
     "start": "webpack-dev-server --inline --progress --port 8080",
     "test": "karma start",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
   },
-  "license": "MIT",
+  "license": "Apache 2.0",
   "dependencies": {
     "@angular/common": "~2.3.0",
     "@angular/compiler": "~2.3.0",

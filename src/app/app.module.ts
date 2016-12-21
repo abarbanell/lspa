@@ -9,6 +9,8 @@ import { LoginComponent } from './login.component';
 import { LogoutComponent } from './logout.component';
 import { NotFoundComponent } from './not-found.component';
 import { routing } from './app.routing';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard.service';
 
 @NgModule({
   imports: [
@@ -24,6 +26,7 @@ import { routing } from './app.routing';
     LogoutComponent,
     NotFoundComponent
   ],
+  providers: [ AuthService, AuthGuard ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

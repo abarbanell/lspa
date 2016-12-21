@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -6,19 +6,10 @@ import { AuthService } from './auth.service';
   templateUrl: './navbar.component.html',
   providers: [ AuthService ] 
 })
-export class NavbarComponent implements OnInit {
-    userName: string;
-    isLoggedin = false;
+export class NavbarComponent {
+    authService: AuthService;
 
-    constructor(private _authService : AuthService){
-    }
-
-    ngOnInit() {
-        this.isLoggedin = this._authService.isLoggedin;
-        if (this.isLoggedin) {
-                this.userName = this._authService.userName;
-        } else { 
-            this.userName = "<None>";
-        }
-    }
+    constructor(authService : AuthService){
+        this.authService = authService;
+  }
 }

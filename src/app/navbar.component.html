@@ -23,8 +23,8 @@
                 <li><a routerLink=""> Home </a></li>
                 <li><a routerLink="sensors">Sensors</a></li>
                 <li><a routerLink="contact">Contact</a></li>
-                <li *ngIf="isLoggedin"><a routerLink="logout"> Logout: {{ userName }} </a></li>
-                <li *ngIf="!isLoggedin"><a routerLink="login"> Login </a></li>
+                <li *ngIf="authService.isLoggedin"><a routerLink="logout"> Logout: {{ userName }} </a></li>
+                <li *ngIf="!authService.isLoggedin"><a routerLink="login"> Login </a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

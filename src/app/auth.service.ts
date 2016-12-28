@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core'; 
-
+import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
-  isLoggedin = false;
-  userName: string;
+  private _session = {
+    isLoggedin: false,
+    userName: ""
+  }
 
   login(username: string, password: string) {
     console.log('TODO: auth.login() - should be after form submit');
-    this.isLoggedin = true;
-    return this.isLoggedin;
+    this._session.isLoggedin = true;
+    return this._session.isLoggedin;
   }
 
   logout() {
     console.log('auth.logout()');
-    this.isLoggedin = false;
+    this._session.isLoggedin = false;
   }
 
+  session() : Observable<ISession>{
+    return Observable.from([this._session])
+  }
+}
+
+export interface ISession {
+  isLoggedin: boolean,
+  userName: String
 }

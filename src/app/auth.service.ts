@@ -21,6 +21,10 @@ export class AuthService {
   session() : Observable<ISession>{
     return Observable.from([this._session])
   }
+
+  isLoggedin() {
+    return this._session.isLoggedin;
+  }
 }
 
 export interface ISession {

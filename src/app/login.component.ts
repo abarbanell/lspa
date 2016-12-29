@@ -19,7 +19,7 @@ export class LoginComponent{
   isLoggedin: Boolean = false;
 
   constructor(private _authService: AuthService, private _router: Router) {
-    this.isLoggedin = this._authService.isLoggedin;
+    this.isLoggedin = this._authService.isLoggedin();
   }
 
   login(){

@@ -8,7 +8,7 @@ export class AuthGuard implements CanActivate{
 
   }
   canActivate() {
-    if (this._authservice.isLoggedin) 
+    if (this._authservice.isLoggedin()) // TODO: subscribe to observable session()
       return true;
     this._router.navigate(['login']);
     return false;

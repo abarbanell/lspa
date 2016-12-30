@@ -3,12 +3,16 @@ import { CanActivate, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate{
-  constructor(private _authservice: AuthService, private _router: Router){
+export class AuthGuard implements CanActivate {
+  isLoggedin: Boolean = false;
 
+  constructor(private _authService: AuthService, private _router: Router) {
+    this._authService.status().subscribe(session => {
+      this.isLoggedin = session.isLoggedin;
+    });
   }
   canActivate() {
-    if (this._authservice.isLoggedin()) // TODO: subscribe to observable session()
+    if (this.isLoggedin)
       return true;
     this._router.navigate(['login']);
     return false;

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { AuthService } from './auth.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService, ISession } from './auth.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
-    template: `
+  template: `
         <div class="alert alert-info">
             LoginComponent found - logged in = {{ isLoggedin }}
         </div>
@@ -15,17 +16,29 @@ import { Router } from '@angular/router';
         </div>
     `
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit {
   isLoggedin: Boolean = false;
 
   constructor(private _authService: AuthService, private _router: Router) {
-    this.isLoggedin = this._authService.isLoggedin();
   }
 
-  login(){
-    this.isLoggedin = this._authService.login("username", "password");
-    console.log("logged in");
-    // navigate to home page
-    this._router.navigate(['']);
+  ngOnInit() {
+    this._authService.status().subscribe(session => {
+      this.isLoggedin = session.isLoggedin;
+      console.log('LoginComponent: received update for user: ' + session.userName);
+    });
+  }
+  
+  login() {
+    if (this.isLoggedin) {
+      console.log("already logged in");
+      // navigate to home page
+      this._router.navigate(['logout']);
+    } else {
+      this._authService.login("Johnny Doey", "password");
+      console.log("now logged in");
+      // navigate to home page
+      this._router.navigate(['']);
+    }
   }
 }

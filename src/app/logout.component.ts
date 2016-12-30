@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router'
 
 @Component({
-    template: `
+  template: `
         <div class="alert alert-info">
             LogoutComponent found
         </div>
@@ -15,17 +15,26 @@ import { Router } from '@angular/router'
         </div>
     `
 })
-export class LogoutComponent{
- isLoggedin: Boolean = false;
+export class LogoutComponent implements OnInit {
+  isLoggedin: Boolean = false;
 
   constructor(private _authService: AuthService, private _router: Router) {
-    this.isLoggedin = this._authService.isLoggedin();
   }
 
-  logout(){
-    this.isLoggedin = false;
-    this._authService.logout();
-    console.log("logged out");
+  ngOnInit() {
+    this._authService.status().subscribe(session => {
+      this.isLoggedin = session.isLoggedin;
+      console.log('LogoutComponent: received update for user: ' + session.userName);
+    });
+  }
+
+  logout() {
+    if (this.isLoggedin) {
+      this._authService.logout();
+      console.log("now logged out");
+    } else {
+      console.log("already logged out");
+    }
     // navigate to home page
     this._router.navigate(['']);
   }

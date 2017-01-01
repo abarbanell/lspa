@@ -5,7 +5,8 @@
             password = {{ passwordValue }} 
         </div>
       
-        <form > 
+        <div class="col-md-6 col-md-offset-3">
+        <form> 
           <div class="form-group">
             <label for="userName"> Username </label>
             <input 
@@ -55,7 +56,9 @@
           <button 
             type="button" 
             class="btn btn-primary"
+            [disabled]="!(usernameValue && passwordValue)"
             (click)="login()">Login</button>
         </form> 
+        </div>
 
     

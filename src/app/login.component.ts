@@ -1,23 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, ISession } from './auth.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 
+import { AuthService, ISession } from './auth.service';
+
 @Component({
-  template: `
-        <div class="alert alert-info">
-            LoginComponent found - logged in = {{ isLoggedin }}
-        </div>
-        <div>
-        <button 
-          type="button" 
-          class="btn btn-primary"
-          (click)="login()">Login</button>
-        </div>
-    `
+  selector: "login",
+  templateUrl: "./login.component.html"
 })
 export class LoginComponent implements OnInit {
   isLoggedin: Boolean = false;
+  userNameValue: string;
+  passwordValue: string;
 
   constructor(private _authService: AuthService, private _router: Router) {
   }
@@ -25,6 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this._authService.status().subscribe(session => {
       this.isLoggedin = session.isLoggedin;
+      this.userNameValue = session.userName;
       console.log('LoginComponent: received update for user: ' + session.userName);
     });
   }
@@ -35,10 +31,20 @@ export class LoginComponent implements OnInit {
       // navigate to home page
       this._router.navigate(['logout']);
     } else {
-      this._authService.login("Johnny Doey", "password");
+      this._authService.login(this.userNameValue, this.passwordValue);
       console.log("now logged in");
       // navigate to home page
       this._router.navigate(['']);
     }
+  }
+
+  changeUserName(x: FormControl) {
+    console.log(x);
+    this.userNameValue = x.value;
+  }
+
+  changePassword(x: FormControl) {
+    console.log(x);
+    this.passwordValue = x.value;
   }
 }

@@ -1,0 +1,61 @@
+  
+        <div class="alert alert-info">
+            LoginComponent found - logged in = {{ isLoggedin }}, 
+            userName = {{ userNameValue }}, 
+            password = {{ passwordValue }} 
+        </div>
+      
+        <form > 
+          <div class="form-group">
+            <label for="userName"> Username </label>
+            <input 
+              type="text"
+              ngModel
+              id="userName"
+              name="userName" 
+              #userName="ngModel" 
+              class="form-control" 
+              (change)="changeUserName(userName)"
+              required 
+              minlength="3">
+            <div 
+              class="alert alert-danger" 
+              *ngIf="userName.touched && userName.errors">
+              <div *ngIf="userName.errors.required">
+                User name is required.
+              </div>
+              <div *ngIf="userName.errors.minlength">
+                Try a longer username.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password"> Password </label>
+            <input 
+              type="text"
+              ngModel 
+              id="password"
+              name="password" 
+              #password="ngModel" 
+              class="form-control"
+              (change)="changePassword(password)"
+              required 
+              minlength="3">
+            <div 
+              class="alert alert-danger" 
+              *ngIf="password.touched && password.errors">
+              <div *ngIf="password.errors.required">
+                Password is required.
+              </div>
+              <div *ngIf="password.errors.minlength">
+                Try a longer password.
+              </div>
+            </div>
+          </div>
+          <button 
+            type="button" 
+            class="btn btn-primary"
+            (click)="login()">Login</button>
+        </form> 
+
+    

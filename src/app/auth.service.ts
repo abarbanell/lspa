@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   login(userName: string, password: string) {
-    console.log('auth.login()');
+    console.log('auth.login() for user: ' + userName);
     this._session.isLoggedin = true;
     this._session.userName = userName;
     this._subj.next(this._session);

@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 
 import { AuthService, ISession } from './auth.service';
+import { IFormComponent } from './dirty-check.service';
 
 @Component({
   selector: "login",
   templateUrl: "./login.component.html"
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, IFormComponent {
   isLoggedin: Boolean = false;
   userNameValue: string;
   passwordValue: string;
+  @ViewChild('form') form: NgForm;
+
 
   constructor(private _authService: AuthService, private _router: Router) {
   }
@@ -23,6 +26,11 @@ export class LoginComponent implements OnInit {
       this.userNameValue = session.userName;
       console.log('LoginComponent: received update for user: ' + session.userName);
     });
+  }
+
+  hasUnsavedChanges() {
+    console.log('hasUnsavedChanges: ', this.form);
+    return (this.form && this.form.dirty && this.form.touched);
   }
   
   login() {

@@ -6,7 +6,7 @@
         </div>
       
         <div class="col-md-6 col-md-offset-3">
-        <form #f="ngForm" (ngSubmit)="login()"> 
+        <form #form="ngForm" (ngSubmit)="login()"> 
           <div class="form-group">
             <label for="userName"> Username </label>
             <input 
@@ -56,7 +56,7 @@
           <button 
             type="submit" 
             class="btn btn-primary"
-            [disabled]="!f.valid">Login</button>
+            [disabled]="!form.valid">Login</button>
         </form> 
         </div>
 

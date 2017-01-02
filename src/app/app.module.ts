@@ -12,6 +12,7 @@ import { NotFoundComponent } from './not-found.component';
 import { routing } from './app.routing';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard.service';
+import { DirtyCheckGuard } from './dirty-check.service';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { AuthGuard } from './auth.guard.service';
     LogoutComponent,
     NotFoundComponent
   ],
-  providers: [ AuthService, AuthGuard ],
+  providers: [ AuthService, AuthGuard, DirtyCheckGuard ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

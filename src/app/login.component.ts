@@ -29,19 +29,18 @@ export class LoginComponent implements OnInit, IFormComponent {
   }
 
   hasUnsavedChanges() {
-    console.log('hasUnsavedChanges: ', this.form);
     return (this.form && this.form.dirty && this.form.touched);
   }
   
   login() {
     if (this.isLoggedin) {
       console.log("already logged in");
-      // navigate to home page
+      this.form.reset(); // clear the form, status and data.
       this._router.navigate(['logout']);
     } else {
       this._authService.login(this.userNameValue, this.passwordValue);
       console.log("now logged in");
-      // navigate to home page
+      this.form.reset(); // clear the form, status and data.
       this._router.navigate(['']);
     }
   }

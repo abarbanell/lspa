@@ -1,10 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
+
 import { AuthService } from './auth.service'
+import { AuthGuard } from './auth.guard.service';
+import { DirtyCheckGuard } from './dirty-check.service';
 import { LoginComponent } from './login.component';
 
-describe('App', () => {
+describe('LoginComponent', () => {
   beforeEach(() => {
     let authServiceStub = {
       login(username: string, password: string) {
@@ -18,8 +22,11 @@ describe('App', () => {
     }
     TestBed.configureTestingModule({ 
         declarations: [ LoginComponent ],
-        providers: [ { provide: AuthService, useValue: authServiceStub }],
-        imports: [ RouterTestingModule ]
+        providers: [ 
+          { provide: AuthService, useValue: authServiceStub },
+          AuthGuard,
+          DirtyCheckGuard ],
+        imports: [ RouterTestingModule, FormsModule ]
       });
   });
   it ('should work', () => {

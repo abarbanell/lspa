@@ -14,11 +14,13 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard.service';
 import { DirtyCheckGuard } from './dirty-check.service';
 import { SensorService } from './sensor.service';
+import { HttpModule} from '@angular/http';
 
 @NgModule({
   imports: [
     BrowserModule, 
     FormsModule,
+    HttpModule,
     routing   
   ],
   declarations: [

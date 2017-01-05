@@ -6,13 +6,15 @@ import { SensorService, ISensor } from './sensor.service';
 })
 export class SensorListComponent implements OnInit {
     sensors: ISensor[];
+    errorMsg: string;
 
     constructor(private _sensorService: SensorService) {
     }
 
   ngOnInit() {
-    this._sensorService.getSensorList().subscribe(list => {
-      this.sensors = list;
-    });
+    this._sensorService.getSensorList()
+      .subscribe(
+        list => { this.sensors = list; },
+        error => { this.errorMsg = <any>error });
   }
 }

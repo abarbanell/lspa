@@ -38,7 +38,7 @@ export class SensorService {
   if (error instanceof Response) {
     const body = error.json() || '';
     const err = body.error || JSON.stringify(body);
-    errMsg = `Could not retrieve servre Data: ${error.status} - ${error.statusText || ''} ${err}`;
+    errMsg = `Could not retrieve server Data: ${error.status} - ${error.statusText || ''} ${err}`;
   } else {
     errMsg = error.message ? error.message : error.toString();
   }

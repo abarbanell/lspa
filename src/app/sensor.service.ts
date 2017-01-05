@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'; 
 import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 // current api from limitless-garden: 
 // https://lg.dokku.abarbanell.de/api/sensor/rpi02/soil
@@ -27,7 +27,13 @@ export class SensorService {
   }
 
   getSensorList() {
-    return this._http.get('https://lg.dokku.abarbanell.de/api/sensor/rpi02/soil')
+    var headers = new Headers({
+      "access-conrol-request-method": "GET"
+    });
+    var options= new RequestOptions({
+      headers: headers
+    });
+    return this._http.get('https://lg.dokku.abarbanell.de/api/sensor/rpi02/soil', options)
       .map(res => res.json())
       .catch(this.handleError);
   }

@@ -6,10 +6,10 @@ export class SensorService {
 
   getSensorList() {
     const sl: ISensor[] = [
-      { id: 's1', type: 'temp', status: 'active', host: ''},
-      { id: 's2', type: 'hum', status: 'active', host: ''},
-      { id: 's3', type: 'light', status: 'active', host: ''},
-      { id: 's4', type: 'soil', status: 'active', host: ''}
+      { id: 's1', type: 'temp', status: 'active', host: 'rpi01'},
+      { id: 's2', type: 'hum', status: 'active', host: 'rpi02'},
+      { id: 's3', type: 'light', status: 'active', host: 'rpi02'},
+      { id: 's4', type: 'soil', status: 'active', host: 'rpi01'}
     ];
     return Observable.from([sl]);
   }

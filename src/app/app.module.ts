@@ -13,6 +13,7 @@ import { routing } from './app.routing';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard.service';
 import { DirtyCheckGuard } from './dirty-check.service';
+import { SensorService } from './sensor.service';
 
 @NgModule({
   imports: [
@@ -30,7 +31,12 @@ import { DirtyCheckGuard } from './dirty-check.service';
     LogoutComponent,
     NotFoundComponent
   ],
-  providers: [ AuthService, AuthGuard, DirtyCheckGuard ],
+  providers: [ 
+    AuthService, 
+    AuthGuard, 
+    DirtyCheckGuard,
+    SensorService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

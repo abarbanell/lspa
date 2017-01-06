@@ -28,11 +28,11 @@ export class SensorService {
 
   getSensorList() {
     var headers = new Headers({
-      "access-conrol-request-method": "GET",
-      "user_key": "0796c5f4eec581e715e5ace51f090d8b"
+      "access-conrol-request-method": "GET"
     });
     var options= new RequestOptions({
-      headers: headers
+      headers: headers,
+      search: "user_key=0796c5f4eec581e715e5ace51f090d8b"
     });
     return this._http.get('https://lg.dokku.abarbanell.de/api/sensor/rpi02/soil', options)
       .map(res => res.json())

@@ -8,17 +8,15 @@
 <table class="table">
 <thead>
   <tr>
-    <th>id</th>
-    <th>type</th>
-    <th>status</th>
     <th>host</th>
+    <th>soil</th>
+    <th>date</th>
   </tr>
 </thead>
   <tr *ngFor='let sensor of sensors'>
-    <th>{{ sensor.id }}</th>
-    <th>{{ sensor.type }}</th>
-    <th>{{ sensor.status }} </th>
     <th>{{ sensor.host }}</th>
+    <th>{{ sensor.soil }}</th>
+    <th>{{ sensor.date }} </th>
   </tr>
 </table>  
 </div>   

@@ -3,7 +3,7 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 // current api from limitless-garden: 
-// https://lg.dokku.abarbanell.de/api/sensor/rpi02/soil
+// https://lg.dokku.abarbanell.de/api/sensor/rpi02/soil&user_key=0796c5f4eec581e715e5ace51f090d8b
 //
 // return: 
 // [{"soil":367,"host":"rpi02","date":"2016-12-13T19:35:05.000Z"},
@@ -28,7 +28,8 @@ export class SensorService {
 
   getSensorList() {
     var headers = new Headers({
-      "access-conrol-request-method": "GET"
+      "access-conrol-request-method": "GET",
+      "user_key": "0796c5f4eec581e715e5ace51f090d8b"
     });
     var options= new RequestOptions({
       headers: headers

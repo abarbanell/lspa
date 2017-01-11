@@ -11,4 +11,6 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 
 import 'bootstrap/dist/css/bootstrap.css';
+require("font-awesome-webpack");
+
 

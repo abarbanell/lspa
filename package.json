@@ -5,6 +5,7 @@
   "repository": "https://github.com/abarbanell/lspa",
   "scripts": {
     "start": "webpack-dev-server --inline --progress --port 8080",
+    "start:full": "rimraf node_modules && npm install && npm start", 
     "test": "karma start --single-run",
     "test:w": "karma start --auto-watch",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
@@ -42,6 +43,10 @@
     "karma-webpack": "^1.8.0",
     "null-loader": "^0.1.1",
     "phantomjs-prebuilt": "^2.1.7",
+    "font-awesome": "4.7.0",
+    "font-awesome-webpack": "0.0.4",
+    "less": "2.7.2",
+    "less-loader": "2.2.3",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",

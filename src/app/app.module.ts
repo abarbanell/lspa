@@ -9,6 +9,7 @@ import { ContactComponent } from './contact.component';
 import { LoginComponent } from './login.component';
 import { LogoutComponent } from './logout.component';
 import { NotFoundComponent } from './not-found.component';
+import { SpinnerComponent } from './spinner.component';
 import { routing } from './app.routing';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard.service';
@@ -31,7 +32,8 @@ import { HttpModule} from '@angular/http';
     ContactComponent,
     LoginComponent,
     LogoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SpinnerComponent
   ],
   providers: [ 
     AuthService, 

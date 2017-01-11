@@ -4,23 +4,30 @@
 </div>
 
 <div class="row">        
-<div class="col-md-4 col-md-offset-1">
-  <spinner [visible]="isLoading"></spinner>  
-<table class="table" *ngIf="!isLoading">
-<thead>
-  <tr>
-    <th>host</th>
-    <th>soil</th>
-    <th>date</th>
-  </tr>
-</thead>
-  <tr *ngFor='let sensor of sensors'>
-    <th>{{ sensor.host }}</th>
-    <th>{{ sensor.soil }}</th>
-    <th>{{ sensor.date }} </th>
-  </tr>
-</table>  
-</div>   
+  <div class="col-md-4 col-md-offset-1">  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">List of Sensors</h3>
+      </div>
+      <div class="panel-body">
+        <spinner [visible]="isLoading"></spinner>  
+        <table class="table" *ngIf="!isLoading">
+          <thead>
+            <tr>
+              <th>host</th>
+              <th>soil</th>
+              <th>date</th>
+            </tr>
+          </thead>
+          <tr *ngFor='let sensor of sensors'>
+            <th>{{ sensor.host }}</th>
+            <th>{{ sensor.soil }}</th>
+            <th>{{ sensor.date }} </th>
+          </tr>
+        </table>  
+      </div>
+    </div>
+  </div>   
 </div>
 
 <div class="alert alert-danger" *ngIf="errorMsg">

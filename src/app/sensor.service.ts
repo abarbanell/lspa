@@ -2,28 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-// current api from limitless-garden: 
-// https://lg.dokku.abarbanell.de/api/sensor/rpi02/soil&user_key=0796c5f4eec581e715e5ace51f090d8b
-//
-// return: 
-// [{"soil":367,"host":"rpi02","date":"2016-12-13T19:35:05.000Z"},
-// {"soil":367,"host":"rpi02","date":"2016-12-13T19:40:07.000Z"}]
-//
 
 @Injectable()
 export class SensorService {
   constructor(private _http: Http) {
 
-  }
-
-  getSensorListMock() {
-    const sl: ISensor[] = [
-      { soil: 327, host: 'rpi01', date: '2016-12-13T19:35:05.000Z'},
-      { soil: 345, host: 'rpi02', date: '2016-12-13T19:40:05.000Z'},
-      { id: 's3', type: 'light', light: 1002, host: 'rpi02', date: '2016-12-13T19:45:05.000Z'},
-      { id: 's4', type: 'soil', hum: 23, host: 'rpi01', date: '2016-12-13T19:50:05.000Z'}
-    ];
-    return Observable.of(sl);
   }
 
   getSensorList() {
@@ -34,7 +17,7 @@ export class SensorService {
       headers: headers,
       search: "user_key=0796c5f4eec581e715e5ace51f090d8b"
     });
-    return this._http.get('https://lg.dokku.abarbanell.de/api/sensor/rpi02/soil', options)
+    return this._http.get('https://lg.dokku.abarbanell.de/api/sensors', options)
       .map(res => res.json())
       .catch(this.handleError);
   }
@@ -54,19 +37,22 @@ export class SensorService {
 }
 }
 
-// TODO: this is not clean... we need to have a better API response from the server
-export interface ISensor {
-  id?: string;
-  type?: string;
-  soil?: number;
-  light?: number;
-  hum?: number;
-  host: string;
-  date: string
+// Below is copy and paste from the server part
+// our payload data model: 
+interface SensorPayload {
+  name: string,
+  host: string,
+  type: {
+    name: string,
+    uom?: string,
+    min?: number,
+    max?: number,
+    tolerance?: number
+  }
 }
 
-export interface IHost {
-  id: string;
-  type: string;
-  IP: string;
+// exposed interface 
+export interface ISensor extends SensorPayload {
+  _id?: string
 }
+

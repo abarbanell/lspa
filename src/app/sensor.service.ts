@@ -11,13 +11,26 @@ export class SensorService {
 
   getSensorList() {
     var headers = new Headers({
-      "access-conrol-request-method": "GET"
+      // "access-control-request-method": "GET"
     });
     var options= new RequestOptions({
       headers: headers,
       search: "user_key=0796c5f4eec581e715e5ace51f090d8b"
     });
     return this._http.get('https://lg.dokku.abarbanell.de/api/sensors', options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  saveSensor(s: ISensor) {
+       var headers = new Headers({
+      // "access-control-request-method": "POST"
+    });
+    var options= new RequestOptions({
+      headers: headers,
+      search: "user_key=0796c5f4eec581e715e5ace51f090d8b"
+    });
+    return this._http.post('https://lg.dokku.abarbanell.de/api/sensors', s, options)
       .map(res => res.json())
       .catch(this.handleError);
   }

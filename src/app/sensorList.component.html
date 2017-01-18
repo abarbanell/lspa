@@ -8,7 +8,6 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">List of Sensors </h3> 
-
       </div>
       <div class="panel-body">
         <table class="table" *ngIf="!isLoading">
@@ -30,9 +29,113 @@
         <spinner [visible]="isLoading"></spinner>
       </div>
     </div>
+
     <div  align="right">    
-      <button type="button" class="btn btn-default btn-sm">Add Sensor</button>
-    <div>
+      <button type="button" 
+        *ngIf="!showForm" 
+        (click)="show(true)" 
+        class="btn btn-default btn-sm">
+        Show Edit Form
+      </button>
+
+    </div>
+
+    <div class="panel panel-default"  *ngIf="showForm">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit Sensor </h3> 
+      </div>
+      <div class="panel-body">
+       <form #form="ngForm" (ngSubmit)="save()"> 
+          <div class="form-group">
+            <label for="sensorName"> Name </label>
+            <input 
+              type="text"
+              ngModel
+              id="sensorName"
+              name="sensorName" 
+              #sensorName="ngModel" 
+              class="form-control" 
+              (change)="changeSensorName(sensorName)"
+              required>
+            <div 
+              class="alert alert-danger" 
+              *ngIf="sensorName.touched && sensorName.errors">
+              <div *ngIf="sensorName.errors.required">
+                Sensor name is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="hostName"> Host </label>
+            <input 
+              type="text"
+              ngModel 
+              id="hostName"
+              name="hostName" 
+              #hostName="ngModel" 
+              class="form-control"
+              (change)="changeHost(hostName)"
+              required 
+              minlength="3">
+            <div 
+              class="alert alert-danger" 
+              *ngIf="hostName.touched && hostName.errors">
+              <div *ngIf="hostName.errors.required">
+                Host name  is required.
+              </div>
+              <div *ngIf="hostName.errors.minlength">
+                Try a longer host name.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sensorType"> Type </label>
+            <input 
+              type="text"
+              ngModel 
+              id="sensorType"
+              name="sensorType" 
+              #sensorType="ngModel" 
+              class="form-control"
+              (change)="changeType(sensorType)"
+              required>
+            <div 
+              class="alert alert-danger" 
+              *ngIf="sensorType.touched && sensorType.errors">
+              <div *ngIf="sensorType.errors.required">
+                Sensor type is required.
+              </div>
+            </div>
+          </div>
+          <button 
+            type="submit" 
+            class="btn btn-primary btn-sm"
+            [disabled]="!form.valid">Save
+          </button>
+          <button type="button" 
+            *ngIf="showForm" 
+            (click)="show(false)"
+            class="btn btn-default btn-sm">
+            Hide Edit Form
+          </button>
+        </form> 
+        <div 
+          class="alert alert-danger" 
+          *ngIf="formMsg.error">
+          Error: {{ formMsg.msg }}
+        </div>
+        <div 
+          class="alert alert-success" 
+          *ngIf="formMsg.success">
+          Success: {{ formMsg.msg }}
+        </div>
+        <div 
+          class="alert alert-info" 
+          *ngIf="!(formMsg.success || formMsg.error) ">
+          Info: {{ formMsg.msg }}
+        </div>
+      </div>
+    </div>
   </div>   
 </div>
 

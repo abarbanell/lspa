@@ -10,6 +10,7 @@ export class SensorListComponent implements OnInit {
     sensors: ISensor[];
     errorMsg: string;
     isLoading = true;
+    isDeleting = "";
     showForm = false;
     formMsg = {
       error: false,
@@ -77,4 +78,14 @@ export class SensorListComponent implements OnInit {
     });
   }
 
+  delete(id: string) {
+    console.log('delete hook called for id: ', id);
+    this.isDeleting = id;
+    this._sensorService.deleteSensor(id).subscribe(s => {
+      this.isDeleting = "";
+      this.load();
+    }, e => {
+      console.log('delete error: ', e);
+    });
+  }
 }

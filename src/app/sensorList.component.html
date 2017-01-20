@@ -17,6 +17,7 @@
               <th>name</th>
               <th>host</th>
               <th>type</th>
+              <th>action</th>
             </tr>
           </thead> 
           <tr *ngFor='let sensor of sensors' >
@@ -24,6 +25,24 @@
             <td>{{ sensor.name }}</td>
             <td>{{ sensor.host }} </td>
             <td>{{ sensor.type.name }} </td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" 
+                        type="button" [id]="'dropdown-' + sensor._id" 
+                        data-toggle="dropdown" aria-haspopup="true" 
+                        aria-expanded="true">
+                  Action
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Edit</a></li>
+                  <li><a (click)="delete(sensor._id)">
+                    Delete</a>
+                  </li>
+                </ul>
+                <spinner [visible]="isDeleting == sensor._id"></spinner>
+              </div>
+            </td>
           </tr>
         </table>  
         <spinner [visible]="isLoading"></spinner>

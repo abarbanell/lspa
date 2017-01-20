@@ -23,7 +23,7 @@ export class SensorService {
   }
 
   saveSensor(s: ISensor) {
-       var headers = new Headers({
+    var headers = new Headers({
       // "access-control-request-method": "POST"
     });
     var options= new RequestOptions({
@@ -31,6 +31,20 @@ export class SensorService {
       search: "user_key=0796c5f4eec581e715e5ace51f090d8b"
     });
     return this._http.post('https://lg.dokku.abarbanell.de/api/sensors', s, options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  deleteSensor(id: string) {
+    var url = 'https://lg.dokku.abarbanell.de/api/sensors/' + id;
+    var headers = new Headers({
+      // "access-control-request-method": "POST"
+    });
+    var options= new RequestOptions({
+      headers: headers,
+      search: "user_key=0796c5f4eec581e715e5ace51f090d8b"
+    });
+    return this._http.delete(url, options)
       .map(res => res.json())
       .catch(this.handleError);
   }

@@ -5,7 +5,7 @@
   "repository": "https://github.com/abarbanell/lspa",
   "scripts": {
     "start": "webpack-dev-server --inline --progress --port 8080",
-    "start:full": "rimraf node_modules && npm install && npm start", 
+    "start:full": "rimraf node_modules && npm install && npm start",
     "test": "karma start --single-run",
     "test:w": "karma start --auto-watch",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
@@ -20,8 +20,11 @@
     "@angular/platform-browser": "~2.3.0",
     "@angular/platform-browser-dynamic": "~2.3.0",
     "@angular/router": "~3.3.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "3.3.7",
     "core-js": "^2.4.1",
+    "install": "0.8.4",
+    "jquery": "3.1.1",
+    "npm": "4.1.1",
     "rxjs": "5.0.0-rc.4",
     "zone.js": "0.7.4"
   },

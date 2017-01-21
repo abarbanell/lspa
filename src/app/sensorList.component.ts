@@ -86,6 +86,7 @@ export class SensorListComponent implements OnInit {
       this.load();
     }, e => {
       console.log('delete error: ', e);
+      this.isDeleting = "";
     });
   }
 }

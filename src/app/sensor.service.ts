@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core'; 
 import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class SensorService {
-  constructor(private _http: Http) {
+  private _user_key: string;
+  private _baseurl: string;
 
+  constructor(private _http: Http, private _conf: ConfigService) {
+    this._user_key = this._conf.get("THREESCALE_PROVIDER_KEY");
+    this._baseurl = this._conf.get("LG_BASE_URL");
   }
 
   getSensorList() {
@@ -15,9 +19,9 @@ export class SensorService {
     });
     var options= new RequestOptions({
       headers: headers,
-      search: "user_key=0796c5f4eec581e715e5ace51f090d8b"
+      search: "user_key=" + this._user_key
     });
-    return this._http.get('https://lg.dokku.abarbanell.de/api/sensors', options)
+    return this._http.get(this._baseurl + '/api/sensors', options)
       .map(res => res.json())
       .catch(this.handleError);
   }
@@ -28,21 +32,21 @@ export class SensorService {
     });
     var options= new RequestOptions({
       headers: headers,
-      search: "user_key=0796c5f4eec581e715e5ace51f090d8b"
+      search: "user_key=" + this._user_key
     });
-    return this._http.post('https://lg.dokku.abarbanell.de/api/sensors', s, options)
+    return this._http.post(this._baseurl + '/api/sensors', s, options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   deleteSensor(id: string) {
-    var url = 'https://lg.dokku.abarbanell.de/api/sensors/' + id;
+    var url = this._baseurl + '/api/sensors/' + id;
     var headers = new Headers({
       // "access-control-request-method": "POST"
     });
     var options= new RequestOptions({
       headers: headers,
-      search: "user_key=0796c5f4eec581e715e5ace51f090d8b"
+      search: "user_key=" + this._user_key
     });
     return this._http.delete(url, options)
       .map(res => res.json())

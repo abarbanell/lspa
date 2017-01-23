@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpModule} from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { ConfigService } from './config.service';
 import { NavbarComponent } from './navbar.component';
 import { HomeComponent } from './home.component';
 import { SensorListComponent } from './sensorList.component';
@@ -16,7 +18,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard.service';
 import { DirtyCheckGuard } from './dirty-check.service';
 import { SensorService } from './sensor.service';
-import { HttpModule} from '@angular/http';
+
 
 @NgModule({
   imports: [
@@ -38,7 +40,8 @@ import { HttpModule} from '@angular/http';
   ],
   providers: [ 
     AuthService, 
-    AuthGuard, 
+    AuthGuard,
+    ConfigService, 
     DirtyCheckGuard,
     SensorService
   ],

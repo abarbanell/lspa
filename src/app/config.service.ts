@@ -4,7 +4,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ConfigService {
-  private _env = {};
+  private _env = {
+      "THREESCALE_PROVIDER_KEY": "true", // this key does not work in PROD
+      "LG_BASE_URL": "http://localhost:5000"
+  };
 
   get(key: string): string {
       return this._env[key];

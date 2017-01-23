@@ -6,11 +6,13 @@ import { TestBed, inject, async } from '@angular/core/testing';
 
 // service test should be standalone without testbed
 import { SensorService } from './sensor.service';
+import { ConfigService } from './config.service';
+
 describe('SensorService', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [ SensorService, MockBackend, BaseRequestOptions,
+      providers: [ SensorService, ConfigService, MockBackend, BaseRequestOptions,
       {
         provide: Http,
         deps: [ MockBackend, BaseRequestOptions ],

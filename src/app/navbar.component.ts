@@ -14,11 +14,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('NavbarCompnent.ngOnInit() called.');
+    console.log('NavbarCompnent.ngOnInit(): called.');
     this._authService.status().subscribe(session => {
       this.isLoggedin = session.isLoggedin;
       this.userName = session.userName;
-      console.log('NavbarComponent: received update for user: ' + session.userName);
+      console.log('NavbarComponent.ngOnInit(): received update for user: ' + session.userName);
     });
   }
 }

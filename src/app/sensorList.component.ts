@@ -66,7 +66,7 @@ export class SensorListComponent implements OnInit {
   save() {
     console.log('TODO: validate and save (update or insert): ', this._sensor);
     this.formMsg = { error: false, success: false, msg: "saving..." };
-    var res = this._sensorService.saveSensor(this._sensor).subscribe(s => {
+    this._sensorService.saveSensor(this._sensor).subscribe(s => {
       console.log('TODO: validate-  save (insert) returned result: ', s);
       if (s.rc == "OK") { 
         this.formMsg = { error: false, success: true, msg: "inserted ID: " + s._id }

@@ -38,3 +38,9 @@ jspm_packages
 
 # MacOS Desktop file
 .DS_Store
+
+# environment setup file
+.lspa.rc
+
+# webpacked dist files
+dist/

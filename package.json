@@ -4,8 +4,9 @@
   "description": "Angular SPA frontend for the Limitless Garden API",
   "repository": "https://github.com/abarbanell/lspa",
   "scripts": {
-    "start": "webpack-dev-server --inline --progress --port 8080",
+    "start": "node server.js",
     "start:full": "rimraf node_modules && npm install && npm start",
+    "start:dev": "webpack-dev-server --inline --progress --port 8080",
     "test": "karma start --single-run",
     "test:w": "karma start --auto-watch",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
@@ -22,6 +23,7 @@
     "@angular/router": "~3.3.0",
     "bootstrap": "3.3.7",
     "core-js": "^2.4.1",
+    "express": "4.14.0",
     "install": "0.8.4",
     "jquery": "3.1.1",
     "npm": "4.1.1",

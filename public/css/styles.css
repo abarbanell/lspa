@@ -15,3 +15,9 @@ a.navbar-brand {
     color: darkred;
 }
 
+
+.lspa-table { 
+  font-size: 14px;  
+  /* remove when done... */
+  /* background-color: lightpink; */
+}

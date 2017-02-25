@@ -5,12 +5,13 @@
   "repository": "https://github.com/abarbanell/lspa",
   "scripts": {
     "start": "node server.js",
-    "start:full": "npm run clean && npm run build && npm start",
+    "start:full": "npm run rebuild && npm start",
     "start:dev": "webpack-dev-server --inline --progress --port 8080",
     "test": "karma start --single-run",
     "test:w": "karma start --auto-watch",
     "clean": "rimraf node_modules && npm install",
-    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
+    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "rebuild": "npm run clean && npm run build"
   },
   "license": "Apache-2.0",
   "dependencies": {

@@ -3,21 +3,7 @@ body {
     color: darkgray;
 }
 
-a.navbar-brand {
-    padding-top: 0px;
-}
-
-.navbar-inverse {
-    background-color: darkred;
-}
-
 .darkred {
     color: darkred;
 }
 
-
-.lspa-table { 
-  font-size: 14px;  
-  /* remove when done... */
-  /* background-color: lightpink; */
-}

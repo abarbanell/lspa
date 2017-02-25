@@ -4,7 +4,11 @@ import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'navbar',
-  templateUrl: './navbar.component.html'
+  templateUrl: './navbar.component.html',
+  styles: [
+    "a.navbar-brand { padding-top: 0px; }",
+    ".navbar-inverse { background-color: darkred; }"
+  ]
 })
 export class NavbarComponent implements OnInit {
   isLoggedin: Boolean = false;

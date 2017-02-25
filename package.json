@@ -5,10 +5,11 @@
   "repository": "https://github.com/abarbanell/lspa",
   "scripts": {
     "start": "node server.js",
-    "start:full": "rimraf node_modules && npm install && npm start",
+    "start:full": "npm run clean && npm run build && npm start",
     "start:dev": "webpack-dev-server --inline --progress --port 8080",
     "test": "karma start --single-run",
     "test:w": "karma start --auto-watch",
+    "clean": "rimraf node_modules && npm install",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
   },
   "license": "Apache-2.0",
@@ -31,7 +32,7 @@
     "zone.js": "0.7.4"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.5.35",
+    "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.45",
     "angular2-template-loader": "^0.4.0",
     "awesome-typescript-loader": "^2.2.4",
@@ -40,7 +41,7 @@
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.15.0",
-    "jasmine-core": "^2.4.1",
+    "jasmine-core": "^2.5.2",
     "karma": "^1.2.0",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",

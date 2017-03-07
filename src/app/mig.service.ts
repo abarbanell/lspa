@@ -13,4 +13,31 @@ export class MigService {
     this._baseurl = this._conf.get("LG_BASE_URL");
   }
 
+  getData() {
+    var headers = new Headers({
+      // "access-control-request-method": "GET"
+    });
+    var options = new RequestOptions({
+      headers: headers,
+      search: "user_key=" + this._user_key
+    });
+    return this._http.get(this._baseurl + '/api/collections/sensor', options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  private handleError(error: Response | any) {
+    // In a real world app, we might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `Could not retrieve server Data: ${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
+
 }

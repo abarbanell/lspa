@@ -62,6 +62,12 @@
         class="btn btn-default btn-sm">
         Show Data Migration Form
       </button>
+      <button type="button" 
+        *ngIf="showMigrationForm" 
+        (click)="showMigration(false)" 
+        class="btn btn-default btn-sm">
+        Hide Data Migration Form
+      </button>
 
     </div>
 
@@ -162,11 +168,12 @@
       </div>
     </div>
   </div> 
-  <div class="col-md-6 col-offset-6">
-    <mig-form></mig-form>
-  </div>  
 </div>
 
 <div class="alert alert-danger" *ngIf="errorMsg">
     SensorListComponent error: {{ errorMsg }}
 </div> 
+
+<div class="row" *ngIf="showMigrationForm">
+    <mig-form></mig-form>
+</div>

@@ -3,9 +3,20 @@
         <h3 class="panel-title">Sensor Data Migration Form</h3>
       </div>
       <div class="panel-body">
-          raw json data goes here
-      </div>
-      <div class="panel-body">
-          parsed data goes here
+          <table class="table" *ngIf="!isLoading">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>host</th>
+              <th>timestamp</th>
+            </tr>
+          </thead> 
+          <tr *ngFor='let d of data' >
+            <td>{{ d._id }}</td>
+            <td>{{ d.host }} </td>
+            <td>{{ d.timestamp }} </td>
+          </tr>
+        </table>  
+          <spinner [visible]="isLoading"></spinner>
       </div>
     </div>

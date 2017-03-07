@@ -6,6 +6,11 @@ import { MigService } from './mig.service';
   templateUrl: './mig-form.component.html'
 })
 export class MigFormComponent implements OnInit {
+  data: String[] = [];
+  dataStr = "";
+
+  isLoading = false;
+  errorMsg: String = null;
 
   constructor(private _migService: MigService) {
   }
@@ -15,5 +20,18 @@ export class MigFormComponent implements OnInit {
   }
 
   load() {
+    this.data = [];
+    this.isLoading = true
+    this._migService.getData()
+      .subscribe(
+        list => { 
+          this.data = list; 
+          this.dataStr = JSON.stringify(list);
+          this.isLoading = false;
+        },
+        error => { 
+          this.errorMsg = <any>error;
+          this.isLoading = false; 
+        });
   }
 }

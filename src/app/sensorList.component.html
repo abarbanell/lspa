@@ -56,6 +56,12 @@
         class="btn btn-default btn-sm">
         Show Edit Form
       </button>
+      <button type="button" 
+        *ngIf="!showMigrationForm" 
+        (click)="showMigration(true)" 
+        class="btn btn-default btn-sm">
+        Show Data Migration Form
+      </button>
 
     </div>
 
@@ -155,7 +161,10 @@
         </div>
       </div>
     </div>
-  </div>   
+  </div> 
+  <div class="col-md-6 col-offset-6">
+    <mig-form></mig-form>
+  </div>  
 </div>
 
 <div class="alert alert-danger" *ngIf="errorMsg">

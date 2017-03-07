@@ -12,6 +12,7 @@ export class SensorListComponent implements OnInit {
     isLoading = true;
     isDeleting = "";
     showForm = false;
+    showMigrationForm = false;
     formMsg = {
       error: false,
       success: false,
@@ -49,6 +50,10 @@ export class SensorListComponent implements OnInit {
 
   show(s:boolean) {
     this.showForm = s;
+  }
+
+  showMigration(s:boolean) {
+    this.showMigrationForm = s;
   }
 
   changeSensorName(s: FormControl) { 

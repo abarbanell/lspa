@@ -1,10 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
-//import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
-import { Observable } from 'rxjs/Rx';
-import { Http } from '@angular/http';
-// import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
-// config service: now everything with debug dummies and localhost.
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ConfigService {

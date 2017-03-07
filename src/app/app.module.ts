@@ -13,11 +13,13 @@ import { LoginComponent } from './login.component';
 import { LogoutComponent } from './logout.component';
 import { NotFoundComponent } from './not-found.component';
 import { SpinnerComponent } from './spinner.component';
+import { MigFormComponent } from './mig-form.component';
 import { routing } from './app.routing';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard.service';
 import { DirtyCheckGuard } from './dirty-check.service';
 import { SensorService } from './sensor.service';
+import { MigService } from './mig.service';
 
 
 @NgModule({
@@ -36,14 +38,16 @@ import { SensorService } from './sensor.service';
     LoginComponent,
     LogoutComponent,
     NotFoundComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    MigFormComponent
   ],
   providers: [ 
     AuthService, 
     AuthGuard,
     ConfigService, 
     DirtyCheckGuard,
-    SensorService
+    SensorService,
+    MigService
   ],
   bootstrap: [ AppComponent ]
 })

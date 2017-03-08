@@ -9,12 +9,21 @@
               <th>id</th>
               <th>host</th>
               <th>timestamp</th>
+              <th>sensors</th>
             </tr>
           </thead> 
           <tr *ngFor='let d of data' >
             <td>{{ d._id }}</td>
             <td>{{ d.host }} </td>
             <td>{{ d.timestamp }} </td>
+            <td>
+              <ul *ngFor='let s of d.sensor'>
+                <li> {{ s }}  
+                  <i *ngIf="mapped(d.host, s)" 
+                      class="fa fa-check"></i>
+                </li>
+              </ul> 
+            </td>
           </tr>
         </table>  
           <spinner [visible]="isLoading"></spinner>

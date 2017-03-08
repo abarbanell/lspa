@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
-import { By }              from '@angular/platform-browser';
-import { DebugElement }    from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { MigFormComponent } from './mig-form.component';
 import { SpinnerComponent } from './spinner.component';
 import { MigService } from './mig.service';
+import { SensorService } from './sensor.service';
 
-describe ('MigFormComponent', () => {
+describe('MigFormComponent', () => {
 
   let comp: MigFormComponent;
   let fixture: ComponentFixture<MigFormComponent>;
@@ -66,50 +67,71 @@ describe ('MigFormComponent', () => {
           "temperature": 23,
           "light": 13837
         }
-      ])     
-    } 
+      ])
+    }
+  }
+
+  let sensorServiceStub = { 
+    getSensorID(host: string, sensor: string) {
+      return "58504ec048e01100073bec96"
+    }
   }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MigFormComponent, SpinnerComponent ], // declare the test component
-      providers: [ { provide: MigService, useValue: migServiceStub } ]
+      declarations: [MigFormComponent, SpinnerComponent], // declare the test component
+      providers: [{ provide: MigService, useValue: migServiceStub },
+      { provide: SensorService, useValue: sensorServiceStub  }]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(MigFormComponent);
 
     comp = fixture.componentInstance; // BannerComponent test 
-    
+
 
   }));
 
   it('comp type is correct', () => {
     expect(comp instanceof MigFormComponent).toBe(true);
   })
-  
+
   it('panel title correct', () => {
-            // query for the title <h1> by CSS element selector
+    // query for the title <h1> by CSS element selector
     let de = fixture.debugElement.query(By.css('.panel-title'));
     let el = de.nativeElement;
     expect(el.textContent).toContain('Sensor Data Migration Form');
   })
 
-  it('initial data empty', ()=> {
+  it('initial data empty', () => {
     let comp = fixture.componentInstance;
-    
+
     expect(comp.data.length).toBe(0);
     expect(comp.errorMsg).toBeNull();
     expect(comp.isLoading).toBe(false);
   })
 
-  it('load function', inject([MigService],
+  it('load function - bypassed', inject([MigService],
     (fixture: MigService) => {
       let obs = fixture.getData();
       expect(obs instanceof Observable).toBe(true);
       let sub = obs.subscribe(x => {
-        // console.log('subscribed event - x: ', x);
+        console.log('subscribed event - x: ', x);
         expect(x.length).toBe(4);
       });
-    }));
+  }));
+
+  it('load function - direct', inject([MigService],
+    (fixture: MigService) => {
+      expect(comp.data.length).toBe(0);
+      comp.load();
+      expect(comp.data.length).toBe(4);
+  }));
+
+// following test is insufficient: it only works with a static version of mapped. Otherwise it should make sure 
+// load() is executed first and it should have both true and false tests based on the mock backend data.
+  it('mapped function - TODO: load data first and have both good and bad tests', () => {
+    let comp = fixture.componentInstance;
+    expect(comp.mapped("rpi02", "soil")).toBe(true);
+  })
 })
